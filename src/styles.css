@@ -1,0 +1,297 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/*
+ * Design system definition.
+ *
+ * The @theme inline block maps CSS custom properties to Tailwind utility
+ * classes (e.g. --color-primary -> bg-primary, text-primary).
+ *
+ * The :root block defines the light off-white/navy color values using oklch.
+ * All colors MUST use oklch format.
+ *
+ * To add a new semantic color:
+ * 1. Add the variable to :root
+ * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ */
+
+@theme inline {
+  --font-sans: "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-deep: var(--primary-deep);
+  --color-olive: var(--olive);
+  --color-olive-light: var(--olive-light);
+  --color-icon-chip: var(--icon-chip);
+
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.5rem;
+  /* Palette: navy #0C2D57 (primary), gold #C9A227 (accent),
+     off-white #F7F5EE (background), white #FFFFFF (cards). */
+  --ink: oklch(0.324 0.081 257.3);
+  --gold: oklch(0.713 0.136 87.5);
+  --cream: oklch(0.968 0.008 97);
+  --box: oklch(1 0 0);
+  --cream-soft: oklch(0.945 0.012 97);
+  --gold-soft: oklch(0.93 0.045 90);
+  --navy-line: oklch(0.324 0.081 257.3 / 0.18);
+  --navy-deep: oklch(0.205 0.058 257.3);
+
+
+  --background: var(--cream);
+  --foreground: var(--ink);
+  --card: var(--box);
+  --card-foreground: var(--ink);
+  --popover: var(--box);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--cream);
+  --primary-dark: oklch(0.26 0.07 257.3);
+  --primary-deep: var(--ink);
+  --olive: var(--gold);
+  --olive-light: var(--gold);
+  --secondary: var(--cream-soft);
+  --secondary-foreground: var(--ink);
+  --muted: var(--cream-soft);
+  --muted-foreground: var(--ink);
+  --accent: var(--gold-soft);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.577 0.215 27.3);
+  --destructive-foreground: oklch(1 0 0);
+  --border: var(--navy-line);
+  --input: oklch(0.324 0.081 257.3 / 0.3);
+  --ring: var(--gold);
+  --chart-1: var(--ink);
+  --chart-2: var(--gold);
+  --chart-3: oklch(0.5 0.09 257.3);
+  --chart-4: oklch(0.82 0.08 90);
+  --chart-5: var(--cream-soft);
+  --sidebar: var(--ink);
+  --sidebar-foreground: var(--cream);
+  --sidebar-primary: var(--gold);
+  --sidebar-primary-foreground: var(--ink);
+  --sidebar-accent: oklch(0.4 0.08 257.3);
+  --sidebar-accent-foreground: var(--cream);
+  --sidebar-border: oklch(1 0 0 / 0.15);
+  --sidebar-ring: var(--gold);
+  --icon-chip: oklch(0.968 0.008 97);
+  --public-card: color-mix(in oklab, var(--box) 96%, transparent);
+  --public-card-border: oklch(0.324 0.081 257.3 / 0.25);
+}
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    font-family: "Cairo", ui-sans-serif, system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 0;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Cairo", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  [data-academic-heading] {
+    font-family: "Cairo", ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  /* Prevent mobile browsers from zooming into small form text on focus. */
+  @media (max-width: 767px) {
+    input,
+    select,
+    textarea {
+      font-size: 1rem;
+    }
+  }
+
+  /* Keep a single show/hide control in password fields: the browser's own
+     reveal and clear affordances are suppressed so only the in-field eye
+     button remains. */
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
+}
+
+@utility brand-gradient {
+  background: linear-gradient(
+    115deg,
+    var(--sidebar) 0%,
+    var(--primary-dark) 58%,
+    var(--navy-deep) 100%
+  );
+  color: var(--sidebar-foreground);
+}
+
+@utility academic-panel {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--card);
+  box-shadow:
+    0 1px 2px color-mix(in oklab, var(--foreground) 7%, transparent),
+    0 12px 30px -24px color-mix(in oklab, var(--primary) 35%, transparent);
+}
+
+
+@utility page-enter {
+  animation: page-enter 360ms ease-out both;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility public-auth-enter {
+  animation: public-auth-enter 1500ms cubic-bezier(0.33, 1, 0.68, 1) both;
+}
+
+@keyframes public-auth-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-60vh);
+  }
+  40% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility public-glass-card {
+  background: var(--public-card);
+  border-color: var(--public-card-border);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 24px 60px -22px oklch(0.324 0.081 257.3 / 0.22);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+.library-public {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--background);
+}
+
+/* Shared full-page background image with a readability
+   overlay. The layer is pinned to the largest viewport size (lvh/vw) and
+   centered, so hiding the browser toolbar or opening the keyboard never
+   resizes it — the image stays perfectly still when inputs are focused. */
+.library-public::before {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 100vw;
+  height: 100lvh;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+  background-image:
+    url("/__l5e/assets-v1/7fe28c3c-ba9b-4684-b7f9-58cdcd72fd4d/library-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+.library-public footer {
+  color: var(--cream);
+}
+
+html {
+  color-scheme: light;
+}
+body {
+  transition:
+    background-color 200ms,
+    color 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
